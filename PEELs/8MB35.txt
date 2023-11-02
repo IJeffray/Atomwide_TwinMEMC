@@ -1,0 +1,39 @@
+
+// Note that M2nRASx input on pin8 is not used
+
+M1RAS  = (); // input!
+
+ABRT   = (M1RAS) | (!M1ABRT) | (!M2ABRT);  // Combine the ABORTs from both MEMCs (AND-gate function A540)
+
+// Why are these all apparently inverted not just masked?
+nVDRQx = (M1RAS) | (!nVDRQ);
+nSDRQx = (M1RAS) | (!nSDRQ);
+FLBKx  = (M1RAS) | (!FLBK);
+RESx   = (M1RAS) | (!RES);
+TMP1   = (M1RAS) | (RESx);  // physical pin unused, just a TMP register
+
+MnBW   = (M1RAS) | (!TMP1) | (!nBW);  // What?
+
+
+
+
+
+
+$ ~/dupal/espresso-logic/bin/espresso -o eqntott 8MB35_16R8.espresso 
+# PAL16R8
+ro19 = (!i9) | (!i6) | (psro13);
+
+ro18 = (!i5) | (psro13);
+
+ro17 = (!i4) | (psro13);
+
+ro16 = (!i3) | (psro13);
+
+ro15 = (!i2) | (psro13);
+
+ro14 = (psro15) | (psro13);
+
+ro13 = ();
+
+ro12 = (!psro14) | (!i7) | (psro13);
+

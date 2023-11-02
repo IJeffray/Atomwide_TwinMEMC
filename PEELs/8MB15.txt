@@ -1,0 +1,56 @@
+$ ~/dupal/espresso-logic/bin/espresso -o eqntott 8MB15_16R8.espresso 
+# PAL16R8
+
+M2OE/M2WE may be swapped - not sure which is which
+
+STUFF = (CLK2&!TMP1) | (!CLK2&!TMP2&TMP1) | (!CLK1&TMP1) | (CLK1&!TMP1) | (CLK2&TMP2) | (!RCLK&!psro12) | (RCLK&psro12) | (!M2OE&!M2WE) | (M2OE&M2WE);
+
+TMP1 =   (STUFF) |                                 (RES&TMP1);
+M2OE =   (STUFF) |  (M2DBE);
+M2WE =   (STUFF) | (!M2DBE);
+CLK2 =   (STUFF) | ( REF2&!REF1) | (!REF2& REF1) | (RES&TMP1);
+CLK1 =   (STUFF) |                                 (RES&TMP1);
+TMP2 =   (STUFF) | (!REF2&!REF1) | ( REF2& REF1);
+RCLK =   (STUFF) | (!REF2&!REF1) | ( REF2&!REF1);
+CHAIN =  (STUFF) |  (REF2& REF1) | (!REF2& REF1);
+    
+
+Original:
+    
+    
+$ ~/dupal/espresso-logic/bin/espresso -o eqntott 8MB15_16R8.espresso 
+# PAL16R8
+ro19 = (i5&psro19) | (psro16&!psro19) | (!psro16&!psro14&psro19) | (
+    !psro15&psro19) | (psro15&!psro19) | (!psro13&!psro12) | (psro13
+    &psro12) | (!psro18&!psro17) | (psro18&psro17) | (psro16&psro14);
+
+ro18 = (i4) | (psro16&!psro19) | (!psro16&!psro14&psro19) | (!psro15
+    &psro19) | (psro15&!psro19) | (!psro13&!psro12) | (psro13&psro12) | (
+    !psro18&!psro17) | (psro18&psro17) | (psro16&psro14);
+
+ro17 = (!i4) | (psro16&!psro19) | (!psro16&!psro14&psro19) | (!psro15
+    &psro19) | (psro15&!psro19) | (!psro13&!psro12) | (psro13&psro12) | (
+    !psro18&!psro17) | (psro18&psro17) | (psro16&psro14);
+
+ro16 = (i5&psro19) | (i2&!i3) | (!i2&i3) | (psro16&!psro19) | (!psro16
+    &!psro14&psro19) | (!psro15&psro19) | (psro15&!psro19) | (!psro13
+    &!psro12) | (psro13&psro12) | (!psro18&!psro17) | (psro18&psro17) | (
+    psro16&psro14);
+
+ro15 = (i5&psro19) | (psro16&!psro19) | (!psro16&!psro14&psro19) | (
+    !psro15&psro19) | (psro15&!psro19) | (!psro13&!psro12) | (psro13
+    &psro12) | (!psro18&!psro17) | (psro18&psro17) | (psro16&psro14);
+
+ro14 = (!i2&!i3) | (i2&i3) | (psro16&!psro19) | (!psro16&!psro14&psro19) | (
+    !psro15&psro19) | (psro15&!psro19) | (!psro13&!psro12) | (psro13
+    &psro12) | (!psro18&!psro17) | (psro18&psro17) | (psro16&psro14);
+
+ro13 = (!i2&!i3) | (i2&!i3) | (psro16&!psro19) | (!psro16&!psro14&psro19) | (
+    !psro15&psro19) | (psro15&!psro19) | (!psro13&!psro12) | (psro13
+    &psro12) | (!psro18&!psro17) | (psro18&psro17) | (psro16&psro14);
+
+ro12 = (i2&i3) | (!i2&i3) | (psro16&!psro19) | (!psro16&!psro14&psro19) | (
+    !psro15&psro19) | (psro15&!psro19) | (!psro13&!psro12) | (psro13
+    &psro12) | (!psro18&!psro17) | (psro18&psro17) | (psro16&psro14);
+    
+    
